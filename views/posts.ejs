@@ -1,0 +1,34 @@
+<h1>Clubhouse Messages</h1>
+<hr />
+
+<ul>
+    <% if(messages && messages.length>0) {%>
+        <%messages.forEach((message)=>{%>
+            <li>
+                <p><%=message.content%></p>
+                <%if(user){%>
+                    <small>Poted By: <%=message.username%> at <%=message.created_at%></small>
+                <%} else {%>
+                    <small>(Log in to see who posted and when)</small>
+                <%}%>
+            </li>
+        <%})%>
+    <%} else {%>
+        <p>No Messages Yet</p>
+    <%}%>
+</ul>
+    <%if(!user) {%>
+        <P><a href="/login">Log In</a> to see author and time of the messages</P>
+        <p><a href="/signup">Sign Up</a> to write a message and see more</p>
+    <%} else {%>
+            <%if(user.membershipstatus){%>
+                <button><a href="/new-message">New Message</a></button>
+
+            <%} else {%>
+                <p>Become a member to wirte message dude</p>
+                <p><a href="/upgrade-membership">Uprade Membership</a></p>
+            <%}%>
+        <button><a href="/logout">Log Out</a></button>
+    <%}%>
+
+    
